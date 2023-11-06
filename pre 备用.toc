@@ -1,2 +1,2 @@
 \beamer@sectionintoc {1}{范数理论}{2}{0}{1}
-\beamer@sectionintoc {2}{矩阵范数}{32}{0}{2}
+\beamer@sectionintoc {2}{矩阵范数}{33}{0}{2}

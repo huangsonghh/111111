@@ -51,7 +51,7 @@
 % meta-data
 \title{深圳大学\\数学科学学院}
 \subtitle{矩阵理论讲义}
-\author{\href{2300201005@email.szu.edu.cn}{孙雪莹}}
+\author{\href{2300201006@email.szu.edu.cn}{黄松}}
 \date{\today}
 \titlebackground{images/beijing}
 
@@ -62,7 +62,12 @@
 \maketitle
 
 \section{范数理论}
-\begin{frame}{向量范数}
+
+\begin{frame}{范数理论}{范数}
+	
+\end{frame}
+
+\begin{frame}{范数理论}{向量范数}
 	\begin{定义}[4.1]
 		若对于${\forall}\bm{x}\in\mathbf{C}^{n}$都有一个实数$\left \| \bm{x}\right \|$与之对应，且满足：
 		\\
@@ -78,7 +83,7 @@
         上述$\textcircled{1},\textcircled{2},\textcircled{3}$称为向量范数三公理.
 \end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{向量范数性质}
 	由向量范数的定义可得范数的性质如下：
 	\begin{性质}
 		\begin{itemize}[<+->]
@@ -88,7 +93,7 @@
 	\end{性质}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{向量范数}
 	\begin{例}[4.1]
 		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，定义
 		$$
@@ -109,7 +114,8 @@
 	\pause
 	$\|\bm{x}\|_{2}$也叫Euclid范数，就是通常意义下的向量的长度.
 	\end{frame}
-\begin{frame}
+
+\begin{frame}{范数理论}{向量范数}
 	向量的2-范数有如下重要的性质
 	\begin{性质}
 		对${\forall}\bm{x}\in\mathbf{C}^{n}$和任意的酉矩阵$\bm{U}$,有
@@ -122,7 +128,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}{范数理论}{向量范数}
 	\begin{例}[4.3]
 		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，定义
 		$$
@@ -144,7 +150,7 @@
 		\end{证}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{Young不等式}
 	\begin{引理}[Young不等式]
 		对任意实数$\alpha \ge 0$和$\beta \ge 0$,都有
 		$$
@@ -156,8 +162,8 @@
 		\end{引理}
 \end{frame}
 
-\begin{frame}
-	\begin{定理}[Holder不等式]
+\begin{frame}{范数理论}{H$\ddot{o}$lder不等式}
+	\begin{定理}[H$\ddot{o}$lder不等式]
 		对任意$x_{k},y_{k}\in\mathbf{C},k=1,2,\cdots,n$有
 		$$
 	    \sum_{k=1}^{n}|x_{k}|\,|y_{k}|\le (\sum_{k=1}^{n}|x_{k}|^{p} )^{\frac{1}{p}}(\sum_{k=1}^{n}|y_{k}|^{q} )^{\frac{1}{q} } 
@@ -169,7 +175,7 @@
 		\end{定理}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{Minkowski不等式}
 	\begin{定理}[Minkowski不等式]
 		对任何$p\ge1 $，有
 		$$
@@ -186,7 +192,8 @@
 		则$\|\bm{x}\|_{p}$是$\mathbf{C}^{n}$上的一种向量范数.
 		\end{例}
 	\end{frame}
-\begin{frame}
+
+\begin{frame}{范数理论}{向量范数}
 	\qquad
 	对于$\|\bm{x}\|_{p}$,$p=1$即为向量的1-范数，$p=2$即为向量的2-范数,$p=+\infty$是否为$\infty$-范数呢，有如下定理.
 	\begin{定理}[4.3]
@@ -197,7 +204,7 @@
 		\end{定理}
 \end{frame}
 
-	\begin{frame}
+	\begin{frame}{范数理论}{向量范数的构造}
 		\begin{定理}[4.4]
 		设$\mathbf{A}\in\mathbf{C}_{n}^{m\times n}$,$\,\|\bullet\|_{a} $是$\mathbf{C}^{m}$上的一种向量范数，对$\forall\bm{x}\in\mathbf{C}^{n}$,定义
 		$$
@@ -210,7 +217,7 @@
 	由此可见，由一个已知的向量范数可构造出无穷多的新的向量范数.
 	\end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{向量范数}
 	\begin{例}[4.5]
 		设$\bm{A}$是$n$阶Hermite正定矩阵，对任意$\bm{x}\in\mathbf{C}^{n}$，定义
 		$$
@@ -228,7 +235,7 @@
 	\end{equation*}
 	\end{frame}
 		
-	\begin{frame}
+	\begin{frame}{范数理论}{向量范数}
 	\begin{例}[4.6]
 		设$\bm{V}_{n}(\mathbf{C})$是复数域$\mathbf{C}$上的$n$维线性空间，$\bm{\varepsilon _{1}},\bm{\varepsilon _{2}},\cdots,\bm{\varepsilon _{n}}$是$\bm{V}_{n}(\mathbf{C})$的一组基.$\forall\bm{\alpha} \in\bm{V}_{n}(\mathbf{C})$可唯一地表示为$\bm{\alpha} =\sum_{k=1}^{n} x_{k}\bm{\varepsilon _{k}},\bm{x}=(x_{1}, x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$.又设$\|\bullet\|$是$\mathbf{C}^{n}$上的向量范数，定义
 		$$
@@ -239,7 +246,7 @@
 		\end{例}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{范数理论}{向量范数}
 	\begin{例}[4.7]
 		设$f(x)\in\mathbf{C}[a,b]$定义
 		$$
@@ -256,7 +263,7 @@
 		\end{例}
 	\end{frame}
 		
-	\begin{frame}
+	\begin{frame}{范数理论}{向量范数}
 		积分形式的H$\ddot{o}$lder不等式(其中$p$,$q$为共轭指数)
 		\begin{equation*}
 			\begin{aligned}
@@ -404,8 +411,8 @@
 				&\textcircled{1}\parallel A\parallel_F^2=\sum_{j=1}^n\parallel\alpha_j\parallel_2^2;\\
 				&\textcircled{2}\parallel\mathbf{A}\parallel_F^2=\mathrm{tr}(\mathbf{A}^\mathrm{H}\mathbf{A})=\sum_{i=1}^n\lambda_i(\mathbf{A}^\mathrm{H}\mathbf{A});
                 \text{其中 }\lambda_i(A^\text{н}A)(i=1,2,\cdotp\cdotp\cdotp,n)\text{ 表示 }A^\text{н}A\text{ 的第i 个特征值}.\\
-				&\textcircled{3}\text{ 对任意的 }&n\text{ 阶西阵 }U,V\text{ 有}\\
-				&\parallel U\text{A }\parallel_F=\parallel AV\parallel_F=\parallel UAV\parallel_F=\parallel U^\text{H}AV\parallel_F=\parallel A\parallel_F.
+				&\textcircled{3}\text{对任意的}n\text{阶酉阵}U,V\text{有}
+				\parallel U\text{A }\parallel_F=\parallel AV\parallel_F=\parallel UAV\parallel_F=\parallel U^\text{H}AV\parallel_F=\parallel A\parallel_F.
 				\text{称之为F- 范数的酉不变性}.
 			\end{aligned}
 		\end{equation*}
@@ -413,7 +420,7 @@
 \end{frame}
 
 \begin{frame}
-	\begin{例}
+	\begin{例}[4.11]
 		设$\mathbf{A}=\left(a_{ij}\right)_{n\times n}\in\mathbf{C}^{n\times n}$,定义
 		\begin{equation*}
 			\begin{aligned}
@@ -422,6 +429,48 @@
 		\end{equation*}
 		则$\parallel\mathbf{A}\parallel_{m_\infty}$是$\mathbb{C}^{n\times n}$上的矩阵范数，称为矩阵的$m_{\infty}-$范数。
 	\end{例}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[4.9]
+		$\parallel\cdot\parallel_{m}$是$\mathbb{C}^{n\times n}$上的矩阵范数，$\mathbf{A}=\left(a_{ij}\right)_{n\times n}\in\mathbf{C}^{n\times n}$,则：
+		\begin{equation*}
+			\begin{aligned}
+				&\textcircled{1}\parallel\mathbf{A}\parallel\text{ 是 }a_{ij}\text{ 的连续函数 },i=1,\cdots,n;j=1,\cdots,n;\\
+				&\textcircled{1}\mathbf{C}^{n\times n}\text{ 上任意两个矩阵范数等价}.
+			\end{aligned}
+		\end{equation*}
+	\end{定理}
+\end{frame}
+
+\begin{frame}
+	\begin{定义}[4.12]
+		设$\parallel\cdot\parallel_m$是$\mathbb{C}^{n\times n}$上的矩阵范数，$\parallel\cdot\parallel_v$是$\mathbb{C}^{n}$上的向量范数，若$\forall A\in\mathbb{C}^{n\times n}$和$\forall x\in\mathbb{C}^n$都有
+		\begin{equation*}
+			\begin{aligned}
+				&\parallel Ax\parallel_v\leqslant\parallel A\parallel_m\parallel x\parallel_v
+			\end{aligned}
+		\end{equation*}
+		则称矩阵范数$\parallel\cdot\parallel_m$与向量范数$\parallel\cdot\parallel_v$是相容的。
+	\end{定义}
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.12]
+      求证$\mathbb{C}^{n\times n}$上的矩阵$m_{1}-$范数与$\mathbb{C}^{n}$上向量的1-范数相容。
+	\end{例}
+	\begin{例}[4.13]
+       求证$\mathbb{C}^{n\times n}$的矩阵$F-$范数与$\mathbb{C}^{n}$上向量的2-范数相容。
+	\end{例}
+	\begin{例}[4.14]
+      求证$\mathbb{C}^{n\times n}$上矩阵的$m_{\infty}-$范数与$\mathbb{C}^{n}$上向量的$\infty-$范数相容。
+	\end{例}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[4.10]
+		设$\parallel\cdot\parallel_m$是$\mathbb{C}^{n\times n}$上的一种矩阵范数，则在$\mathbb{C}^{n}$上必存在与它相容的向量范数。
+	\end{定理}
 \end{frame}
 
 \backmatter
