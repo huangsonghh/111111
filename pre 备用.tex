@@ -1,0 +1,417 @@
+% IMPORTANT: PLEASE USE XeLaTeX FOR TYPESETTING
+\documentclass{sintefbeamer}[dark]
+\usepackage{xeCJK}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{graphicx}
+% \usepackage{circledtext} % for circled text
+
+            
+\AtBeginEnvironment{block}{
+    \setstretch{1.35}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    \setlength{\abovedisplayshortskip}{2pt}
+    \setlength{\belowdisplayshortskip}{2pt}
+}
+% Define the 'szu' theorem style
+
+% \makeatletter % 可以使其中的@生效
+\setbeamertemplate{theorem begin}{
+  \begin{\inserttheoremblockenv}
+  {%
+    \leftskip0pt\upshape \inserttheoremname%
+    \ifx\inserttheoremnumber\empty\else\ \inserttheoremnumber\fi
+    \ifx\inserttheoremaddition\empty\else\ (\inserttheoremaddition)\fi%
+  }%
+  \setlength{\parindent}{2em}
+  }
+\setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+\setbeamersize{description width=2em}
+
+% \makeatother
+
+% Custom colors
+\setbeamercolor{block title}{bg=thmcolor,fg=white}
+\setbeamercolor{block body}{}
+
+
+
+\newtheorem*{定义}{定义}
+\newtheorem*{例}{例}
+\newtheorem*{定理}{定理}
+\newtheorem*{证}{证}
+\newtheorem*{推论}{推论}
+\newtheorem*{性质}{性质}
+\newtheorem{引理}{引理}
+
+% meta-data
+\title{深圳大学\\数学科学学院}
+\subtitle{矩阵理论讲义}
+\author{\href{2300201005@email.szu.edu.cn}{孙雪莹}}
+\date{\today}
+\titlebackground{images/beijing}
+
+
+% document body
+\begin{document}
+
+\maketitle
+
+\section{范数理论}
+\begin{frame}{向量范数}
+	\begin{定义}[4.1]
+		若对于${\forall}\bm{x}\in\mathbf{C}^{n}$都有一个实数$\left \| \bm{x}\right \|$与之对应，且满足：
+		\\
+		$\textcircled{1}$正定性：当$\bm{x}\neq\bm{0},\left \| \bm{x}\right \|>0$;当$\bm{x}=\bm{0},\left \| \bm{x}\right \|=0;$
+		\\
+		$\textcircled{2}$齐次性：${\forall}k\in\mathbf{C},\left \| k\bm{x}\right \|=|k|\left \| \bm{x}\right \|;$
+		\\
+		$\textcircled{3}$三角不等式:${\forall}\bm{x},\bm{y}\in\mathbf{C}^{n}$,都有$\left \| \bm{x}+\bm{y}\right \|\le\left \| \bm{x}\right \|+\left \| \bm{y}\right \|;$
+		\linebreak
+        则称$\|\bm{x}\|$为$\bm{x}$的向量范数，定义了范数的线性空间称为附范数线性空间.
+    \end{定义}
+       
+        上述$\textcircled{1},\textcircled{2},\textcircled{3}$称为向量范数三公理.
+\end{frame}
+
+\begin{frame}
+	由向量范数的定义可得范数的性质如下：
+	\begin{性质}
+		\begin{itemize}[<+->]
+		\item$\|-\bm{x}\|=\|\bm{x}\|$;
+		\item$|\, \|\bm{x}\|-\|\bm{y}\|\,|\le \|\bm{x}\|+\|\bm{y}\|$.
+		\end{itemize}
+	\end{性质}
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.1]
+		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，定义
+		$$
+		\|\bm{x}\|_{1}=\sum_{k=1}^{n}|x_{k}| 
+		$$
+		\linebreak
+		则$\|\bm{x}\|_{1}$是向量$\bm{x}$的一种范数，称为向量1-范数.
+		\end{例}
+	\pause
+	\begin{例}[4.2]
+		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$,定义
+		$$
+		\|\bm{x}\|_{2}=\sqrt{\sum_{k=1}^{n}|x_{k}|^{2}}=\sqrt{\sum_{k=1}^{n}\overline{x_{k}}x_{k}}=\sqrt{\bm{x}^{H}\bm{x}}=(\bm{x},\bm{x})^{\frac{1}{2} } 
+		$$
+		\linebreak
+		则$\|\bm{x}\|_{2}$是向量$\bm{x}$的一种范数，称为向量2-范数.
+		\end{例}
+	\pause
+	$\|\bm{x}\|_{2}$也叫Euclid范数，就是通常意义下的向量的长度.
+	\end{frame}
+\begin{frame}
+	向量的2-范数有如下重要的性质
+	\begin{性质}
+		对${\forall}\bm{x}\in\mathbf{C}^{n}$和任意的酉矩阵$\bm{U}$,有
+		$$
+		\|\bm{U}\bm{x}\|_{2}= \sqrt{(\bm{U}\bm{x})^{H}(\bm{U}\bm{x})} =\sqrt{\bm{x}^{H}\bm{U}^{H}\bm{U}\bm{x}}=\sqrt{\bm{x}^{H}\bm{x}}=\|\bm{x}\|_{2}
+		$$
+		\linebreak
+		这一性质称为向量2-范数的酉不变性.
+		\end{性质}
+\end{frame}
+
+
+\begin{frame}
+	\begin{例}[4.3]
+		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，定义
+		$$
+		\|\bm{x}\|_{\infty }=\underset{k}{max}|x_{k}|
+		$$
+		\end{例}
+	\pause
+	\begin{证}
+		$\textcircled{1},\textcircled{2}$的正定性，齐次性显然.
+		\\
+		以下证$\textcircled{3}$三角不等式：
+		\\
+		设$\bm{y}=(y_{1},y_{2},\cdots,y_{n})^{T}\in\mathbf{C}^{n}$，有
+		$$
+		\|\bm{x}+\bm{y}\|_{\infty}=\underset{k}{max}|x_{k}|+\underset{k}{max}|y_{k}|=\|\bm{x}\|_{\infty}+\|\bm{y}\|_{\infty}
+		$$
+		\linebreak
+		故$\|\bm{x}\|_{\infty}$是$\mathbf{C}^{n}$的一种向量范数.
+		\end{证}
+\end{frame}
+
+\begin{frame}
+	\begin{引理}[Young不等式]
+		对任意实数$\alpha \ge 0$和$\beta \ge 0$,都有
+		$$
+		\alpha \beta \le \frac{\alpha ^{p} }{p}+\frac{\beta ^{q} }{q}  
+		$$
+		\linebreak
+		其中$p>1,q>1$,且$\frac{1}{p} +\frac{1}{q} =1$,p,q称为共轭指数.
+		
+		\end{引理}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[Holder不等式]
+		对任意$x_{k},y_{k}\in\mathbf{C},k=1,2,\cdots,n$有
+		$$
+	    \sum_{k=1}^{n}|x_{k}|\,|y_{k}|\le (\sum_{k=1}^{n}|x_{k}|^{p} )^{\frac{1}{p}}(\sum_{k=1}^{n}|y_{k}|^{q} )^{\frac{1}{q} } 
+		$$
+		\linebreak
+		其中，$p>1,q>1$，且$\frac{1}{p}+\frac{1}{q} =1$.
+		\pause
+		当$p=q=2$，就是有名的Cauchy-Schwarz不等式.
+		\end{定理}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[Minkowski不等式]
+		对任何$p\ge1 $，有
+		$$
+		(\sum_{k=1}^{n}|x_{k}+y_{k}|^{p} )^{\frac{1}{p} }\le (\sum_{k=1}^{n}|x_{k}|^{p} )^{\frac{1}{p} }+ (\sum_{k=1}^{n}|y_{k}|^{p} )^{\frac{1}{p} }
+		$$
+		\end{定理}
+	\pause
+	\begin{例}[4.4]
+		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，定义
+		$$
+		\|\bm{x}\|_{p}=(\sum_{k=1}^{n}|x_{k}|^{p})^{\frac{1}{p}}\qquad 1\le p<+\infty
+		$$
+		\linebreak
+		则$\|\bm{x}\|_{p}$是$\mathbf{C}^{n}$上的一种向量范数.
+		\end{例}
+	\end{frame}
+\begin{frame}
+	\qquad
+	对于$\|\bm{x}\|_{p}$,$p=1$即为向量的1-范数，$p=2$即为向量的2-范数,$p=+\infty$是否为$\infty$-范数呢，有如下定理.
+	\begin{定理}[4.3]
+		设$\bm{x}=(x_{1},x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$，则
+		$$
+		\lim_{p \to +\infty}\|\bm{x}\|_{p}=\|\bm{x}\|_{\infty}
+		$$
+		\end{定理}
+\end{frame}
+
+	\begin{frame}
+		\begin{定理}[4.4]
+		设$\mathbf{A}\in\mathbf{C}_{n}^{m\times n}$,$\,\|\bullet\|_{a} $是$\mathbf{C}^{m}$上的一种向量范数，对$\forall\bm{x}\in\mathbf{C}^{n}$,定义
+		$$
+		\|\bm{x}\|_{b}=\|\bm{A}\bm{x}\|_{a}
+		$$
+		\linebreak
+		则$\|\bm{x}\|_{b}$是$\mathbf{C}^{n}$中的向量范数.
+		\end{定理}
+	\pause
+	由此可见，由一个已知的向量范数可构造出无穷多的新的向量范数.
+	\end{frame}
+
+\begin{frame}
+	\begin{例}[4.5]
+		设$\bm{A}$是$n$阶Hermite正定矩阵，对任意$\bm{x}\in\mathbf{C}^{n}$，定义
+		$$
+		\|\bm{x}\|_{\bm{A}}=\sqrt{\bm{x}^{H}\bm{A}\bm{x}}
+		$$
+		\linebreak
+		则$\|\bm{x}\|_{\bm{A}}$是一种向量范数.
+		\end{例}
+	\pause
+	证： 因为A是Hermit正定矩阵，故存在n阶非奇异矩阵$Q$，使$A=Q^{H}Q$,于是
+	\begin{equation*}
+	    \begin{aligned}
+		&\parallel x\parallel_A=\sqrt{x^{\mathrm{H}}Q^{\mathrm{H}}Qx}=\sqrt{(Qx)^{\mathrm{H}}(Qx)}=\parallel Qx\parallel_2
+		\end{aligned}
+	\end{equation*}
+	\end{frame}
+		
+	\begin{frame}
+	\begin{例}[4.6]
+		设$\bm{V}_{n}(\mathbf{C})$是复数域$\mathbf{C}$上的$n$维线性空间，$\bm{\varepsilon _{1}},\bm{\varepsilon _{2}},\cdots,\bm{\varepsilon _{n}}$是$\bm{V}_{n}(\mathbf{C})$的一组基.$\forall\bm{\alpha} \in\bm{V}_{n}(\mathbf{C})$可唯一地表示为$\bm{\alpha} =\sum_{k=1}^{n} x_{k}\bm{\varepsilon _{k}},\bm{x}=(x_{1}, x_{2},\cdots,x_{n})^{T}\in\mathbf{C}^{n}$.又设$\|\bullet\|$是$\mathbf{C}^{n}$上的向量范数，定义
+		$$
+		\|\bm{\alpha}\|_{v}=\|\bm{x}\|
+		$$
+		\linebreak
+		则$\|\bm{\alpha}\|_{\nu}$是$\bm{V}_{n}(\mathbf{C})$上的向量范数.
+		\end{例}
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.7]
+		设$f(x)\in\mathbf{C}[a,b]$定义
+		$$
+		\|f(t)\|_{1}=\int_{a}^{b}|f(t)|dt
+		$$
+		$$
+		\|f(t)\|_{p}=(\int_{a}^{b}|f(t)|^{p}dt)^{\frac{1}{p} }
+		$$
+		$$
+		\|f(t)\|_{\infty}=\max_{a\le t\le b}|f(t)| 
+		$$
+		\linebreak
+		则它们都是$\mathbf{C}[a,b]$上的向量范数.
+		\end{例}
+	\end{frame}
+		
+	\begin{frame}
+		积分形式的H$\ddot{o}$lder不等式(其中$p$,$q$为共轭指数)
+		\begin{equation*}
+			\begin{aligned}
+				&\int_a^b\big|\:f(t)\:g(t)\:\big|\:\mathrm{d}t\leqslant(\int_a^b\big|\:f(t)\:\big|^p\:\mathrm{d}t)^{\frac{1}{p}}\big(\int_a^b\big|\:g(t)\:\big|^q\:\mathrm{d}t\big)^{\frac{1}{q}}
+			\end{aligned}
+		\end{equation*} 
+		Minkowski不等式
+		\begin{equation*}
+			\begin{aligned}
+				&\int_{a}^{b}(\begin{array}{c|c|c}f(t)+g(t)&^{p})\end{array}^{\frac{1}{p}}\leqslant(\int_{a}^{b}\bigg|\:f(t)\:\bigg|^{p}\:\mathrm{d}t)^{\frac{1}{p}}+(\int_{a}^{b}\bigg|\:g(t)\:\bigg|^{p}\:\mathrm{d}t)^{\frac{1}{p}}\quad p\geqslant1
+			\end{aligned}
+		\end{equation*} 
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.8]
+		设$\boldsymbol{x}=(x_1,x_2,\cdots,x_n)^{\mathrm{T}}\in\mathbf{C}^n$,定义
+		\begin{equation*}
+			\begin{aligned}
+				&\parallel x\parallel_p=(\sum_{k=1}^n\mid x_k\mid^p)^{\frac{1}{p}}\quad0<p<1
+			\end{aligned}
+		\end{equation*}
+		由于它不满足定义4.1中的$\textcircled{3}$,故它不是$\mathbf{C}^n$上的向量范数。
+	\end{例}
+		例如在$\mathbf{R}^n$中，$x=(1,0,\cdots,0)^{\mathrm{T}},y=(0,1,0,\cdots,0)^{\mathrm{T}},p=\frac{1}{2}$,则
+        \begin{equation*}
+			\begin{aligned}
+				&\parallel x+y\parallel_{\frac12}=4,\parallel x\parallel_{\frac12}=1,\parallel y\parallel_{\frac12}=1
+			\end{aligned}
+		\end{equation*}
+		故$\parallel x\parallel_{\frac12}$不是$\mathbf{R}^n$上的向量范数。
+\end{frame}
+
+\begin{frame}
+	\begin{定义}[4.2]
+		设$\|\bullet\|_{a}$和$\|\bullet\|_{b}$是$\mathbf{C}^{n}$上的两种向量范数，如果存在正数$c_{1},c_{2}$，使对任意$\bm{x}\in\mathbf{C}^{n}$都有
+		$$
+		c_{1}\|\bm{x}\|_{b}\le\|\bm{x}_{a}\|\le c_{2}\|\bm{x}\|_{b}
+		$$
+		\linebreak
+		则称向量范数$\|\bullet\|_{a}$与$\|\bullet\|_{b}$等价.
+		\end{定义}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[4.5]
+		设$\|\bullet\|$是$\bm{V}_{n}(\bm{F})$上的任一向量范数，$\bm{\varepsilon _{1}},\bm{\varepsilon _{2}},\cdots,\bm{\varepsilon _{n}}$为$\bm{V}_{n}(\bm{F})$的一组基.$\forall\bm{\alpha} \in\bm{V}_{n}(\bm{F})$可唯一表示成$\bm{\alpha} =\sum\limits_{k=1}^{n} x_{k}\bm{\varepsilon _{k}},\bm{x}=(x_{1}, x_{2},\cdots,x_{n})^{T}\in\bm{F}^{n}$,则$\|\bm{\alpha}\|$是$x_{1},x_{2},\cdots,x_{n}$的连续函数.
+		\end{定理}
+	\pause
+	\begin{定理}[4.6]
+		$n$维线性空间$\bm{V}_{n}(\bm{F})$上的任意两个向量范数都是等价的.
+		\end{定理}
+\end{frame}
+\begin{frame}
+	\begin{定义}[4.3]
+		设$\{\bm{x}^{(k)}\}$是$\mathbf{C}^{n}$中的向量序列，其中$\bm{x}^{(k)}=(x_{1}^{(k)},\cdots,x_{i}^{(k)},\cdots,x_{n}^{(k)})^{T}$,若$\underset{k \to +\infty}{lim} x_{i} ^{(k)}=x_{i}(i=1,2,\cdots,n)$，则称向量序列$\{\bm{x}^{(k)}\}$是收敛的，并说$\{\bm{x}^{(k)}\}$的极限为向量$\bm{x}=(x_{1},\cdots,x_{i},\cdots,x_{n})^{T}$,记为
+		$$
+		\lim_{k \to +\infty} \bm{x}^{(k)}=\bm{x}
+		$$
+		\linebreak
+		向量序列不收敛时称为发散的.
+		\end{定义}
+\end{frame}
+\begin{frame}
+	\qquad
+	与数列收敛相类似，很容易证明向量序列的收敛性具有以下性质：
+	\begin{性质}
+		设$\{\bm{x}^{(k)}\},\{\bm{y}^{(k)}\}$是$\mathbf{C}^{n}$中的两个向量序列,$\lambda ,\mu $是两个复常数,$\bm{A}\in\mathbf{C}^{m\times n}$，且$\underset{k\to+\infty}{lim}{\{\bm{x}^{(k)}\}}=\bm{x},\underset{k\to+\infty}{lim}{\{\bm{y}^{(k)}\}}=\bm{y}$,则：
+		\par
+		$\textcircled{1}\underset{k \to +\infty}{lim} (\lambda\bm{x}^{(k)}+\mu\bm{y}^{(k)})=\lambda\bm{x}+\mu\bm{y}$;
+		\par
+		$\textcircled{2}\underset{k \to +\infty}{lim}\bm{A}\bm{x}^{(k)}=\bm{A}\bm{x}$.
+		
+		\end{性质}
+	\pause
+	\begin{定理}[4.7]
+		$\mathbf{C}^{n}$中向量序列$\{\bm{x}^{(k)}\}$收敛于向量$\bm{x}$的充分必要条件是，对于$\mathbf{C}^{n}$上任一向量范数$\|\bullet\|$，都有
+		$$
+		\underset{k\to \infty}{lim}\|\bm{x}^{(k)}-\bm{x}\|=0
+		$$
+		\end{定理}
+	
+\end{frame}
+
+\section{矩阵范数}
+\begin{frame}
+在许多场合需要度量矩阵的“大小”，比如矩阵序列的收敛、解线性方程组时的误差分析。一个自然的想法就是将矩阵“拉直”，将其视作一个$mxn$维的向量。\\
+若$A\in\mathbf{R}^{m\times n}$,则可将$A$看作$\mathbf{R}^{m\times n}$的向量，可以按照向量范数三公理来定义它的向量范数
+\begin{equation*}
+	\begin{aligned}
+		\parallel\boldsymbol{A}\parallel_{v_1}&=\sum_{i=1}^m\sum_{j=1}^n\mid a_{ij}\mid\\
+		\parallel\boldsymbol{A}\parallel_{v_p}&=(\sum_{i=1}^n\sum_{j=1}^n\mid a_{ij}\mid^{\frac1p})^{\frac1p}\quad1<p<+\infty\\
+		\parallel\boldsymbol{A}\parallel_{v_\infty}&=\max_{i,j}\mid a_{ij}\mid
+	\end{aligned}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\begin{定义}[4.4]
+	若$\forall A\in\mathbb{C}^{n\times n}$都有一个实数 $\parallel A\parallel$与之对应,且满足:
+	\begin{equation*}
+		\begin{aligned}
+			&\text{ 正定性:当 }A\neq\boldsymbol{O},\parallel A\parallel>0;\text{当 }A=\boldsymbol{O}\text{时,}\parallel A\parallel=0;\\
+			&\text{ 齐次性: }\forall k\in\mathbf{C},\parallel k\mathbf{A}\parallel=\mid k\mid\parallel\mathbf{A}\parallel;\\
+			&\text{三角不等式:}\forall A,B\in\mathbb{C}^{n\times n},\text{都有}\parallel A+B\parallel\leqslant\|A\parallel+\|B\parallel;\\
+			&\text{相容性:}\forall A,B\in\mathbb{C}^{n\times n},\text{都有}\parallel AB\parallel\leqslant\|A\parallel\|B\parallel.
+		\end{aligned}
+	\end{equation*}
+	则称$\left\|A\right\|$为$ C^{n\times n}$上矩阵$A$的矩阵范数.\\
+\end{定义}
+	\pause
+	\textbf{性质1} \qquad $\parallel-A\parallel=\parallel A\parallel.$\\
+	\textbf{性质2} \qquad $\mid\lVert A\rVert-\lVert B\rVert\mid\leqslant\lVert A-B\rVert.$
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.9]
+		设$\mathbf{A}=\left(a_{ij}\right)_{n\times n}\in\mathbf{C}^{n\times n}$,定义
+		\begin{equation*}
+			\begin{aligned}
+			&\parallel A\parallel_{m_1}=\sum_{i=1}^n\sum_{j=1}^n\mid a_{ij}\mid 
+		\end{aligned}
+		\end{equation*}
+		则$\parallel A\parallel_{m_1}$是$\mathbb{C}^{n\times n}$上的一种矩阵范数，称为矩阵的$m_1-$范数。
+	\end{例}
+\end{frame}
+
+\begin{frame}
+	\begin{例}[4.10]
+		设$\boldsymbol{A}=\left(a_{ij}\right)_{n\times n}\in\mathbf{C}^{n\times n}$,定义
+		\begin{equation*}
+		\begin{aligned}
+			&\parallel A\parallel_F=\parallel A\parallel_{m_2}=\sqrt{\sum_{i=1}^n\sum_{j=1}^n\mid a_{ij}\mid^2}=(\sum_{i=1}^n\sum_{j=1}^n\mid a_{ij}\mid^2)^{\frac{1}{2}}=\sqrt{\operatorname{tr}(A^{\text{H}}A)}
+		\end{aligned}
+		\end{equation*}
+		则$\parallel A\parallel_F$是$\mathbb{C}^{n\times n}$,上的一种矩阵范数,称为矩阵的\textbf{Frobenius}范数，简称$F-$范数。
+	\end{例}
+\end{frame}
+
+\begin{frame}
+	\begin{定理}[4.8]
+		设$A\in\mathbb{C}^{n\times n}$,记$A=(\boldsymbol{\alpha}_1,\cdots,\boldsymbol{\alpha}_j,\cdots,\boldsymbol{\alpha}_n),\boldsymbol{\alpha}_j\in\mathbf{C}^n,j=1,2,\cdots,n$,则：
+		\begin{equation*}
+			\begin{aligned}
+				&\textcircled{1}\parallel A\parallel_F^2=\sum_{j=1}^n\parallel\alpha_j\parallel_2^2;\\
+				&\textcircled{2}\parallel\mathbf{A}\parallel_F^2=\mathrm{tr}(\mathbf{A}^\mathrm{H}\mathbf{A})=\sum_{i=1}^n\lambda_i(\mathbf{A}^\mathrm{H}\mathbf{A});
+                \text{其中 }\lambda_i(A^\text{н}A)(i=1,2,\cdotp\cdotp\cdotp,n)\text{ 表示 }A^\text{н}A\text{ 的第i 个特征值}.\\
+				&\textcircled{3}\text{ 对任意的 }&n\text{ 阶西阵 }U,V\text{ 有}\\
+				&\parallel U\text{A }\parallel_F=\parallel AV\parallel_F=\parallel UAV\parallel_F=\parallel U^\text{H}AV\parallel_F=\parallel A\parallel_F.
+				\text{称之为F- 范数的酉不变性}.
+			\end{aligned}
+		\end{equation*}
+    \end{定理}
+\end{frame}
+
+
+\backmatter
+\end{document}
